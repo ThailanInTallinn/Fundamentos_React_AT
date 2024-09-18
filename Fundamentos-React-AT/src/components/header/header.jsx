@@ -8,12 +8,13 @@ export default function Header() {
       <Link to="/">
         <h1>HotelBooking.</h1>
       </Link>
+      <div className={styles.optionsContainer}>
+        <input type="text" placeholder="Busque seu hotel" />
 
-      <input type="text" placeholder="Busque seu hotel" />
-
-      <span>
-        <CiDark />
-      </span>
+        <span>
+          <CiDark />
+        </span>
+      </div>
     </header>
   );
 }
