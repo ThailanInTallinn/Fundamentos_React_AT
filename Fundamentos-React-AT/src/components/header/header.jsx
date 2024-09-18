@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
+import { CiLight, CiDark } from "react-icons/ci";
+
 export default function Header() {
   return (
     <header className={styles.headerContainer}>
