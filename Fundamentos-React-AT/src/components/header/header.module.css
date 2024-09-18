@@ -1,0 +1,5 @@
+.headerContainer {
+  grid-area: Header;
+  display: flex;
+  background-color: darkblue;
+}
