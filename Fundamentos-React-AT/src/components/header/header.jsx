@@ -10,6 +10,10 @@ export default function Header() {
       </Link>
 
       <input type="text" placeholder="Busque seu hotel" />
+
+      <span>
+        <CiDark />
+      </span>
     </header>
   );
 }
