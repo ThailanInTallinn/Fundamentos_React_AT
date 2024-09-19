@@ -3,7 +3,7 @@ import styles from "./card.module.css";
 
 export default function Card(props) {
   return (
-    <Link to="/details">
+    <Link to={`/details/${props.id}`}>
       <div className={styles.cardContainer}>
         <img src={props.img} />
         <p>{props.name}</p>
