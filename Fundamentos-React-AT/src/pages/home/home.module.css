@@ -2,6 +2,7 @@
   height: 100vh;
   width: 100vw;
   display: grid;
+  position: relative;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 120px repeat(5, 1fr);
   grid-auto-rows: 100px;
@@ -12,4 +13,20 @@
     "Options Body Body Body Body"
     "Options Body Body Body Body"
     "Options Body Body Body Body";
+}
+
+.addButton {
+  color: darkblue;
+  position: fixed;
+  bottom: 70px;
+  right: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(243, 243, 109);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 2.5rem;
 }
