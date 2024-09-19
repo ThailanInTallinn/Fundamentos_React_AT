@@ -5,7 +5,7 @@ import Details from "./pages/details/details";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
-  { path: "/details", element: <Details /> },
+  { path: "/details/:id", element: <Details /> },
 ]);
 
 export default function Routes() {
