@@ -10,3 +10,9 @@
     "Options Body Body Body Body"
     "Options Body Body Body Body";
 }
+
+.homeContainer > div {
+  width: 100%;
+  height: calc(100% - 120px);
+  background-color: red;
+}

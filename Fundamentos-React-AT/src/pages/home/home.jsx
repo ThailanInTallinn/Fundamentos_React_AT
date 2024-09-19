@@ -7,10 +7,8 @@ export default function Home() {
   return (
     <div className={styles.homeContainer}>
       <Header />
-      <div>
-        <Options />
-        <Body />
-      </div>
+      <Options />
+      <Body />
     </div>
   );
 }
