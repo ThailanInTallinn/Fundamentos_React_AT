@@ -8,7 +8,7 @@ export default function Details() {
   return (
     <div className={styles.detailsContainer}>
       <Header />
-      <h2>{parametros.id}</h2>
+      {console.log(parametros)}
     </div>
   );
 }
