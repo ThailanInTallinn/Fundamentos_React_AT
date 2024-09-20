@@ -37,26 +37,42 @@ export default function Home() {
     photo: "",
   });
 
+  const [hotelsList, setHotelsList] = useState([]);
+
   function setFormInfo(event) {
     switch (event.target.name) {
       case "name":
-        setFormData({ name: event.target.value });
+        setFormData({ ...formData, name: event.target.value });
         break;
       case "city":
-        setFormData({ city: event.target.value });
+        setFormData({ ...formData, city: event.target.value });
         break;
       case "state":
-        setFormData({ state: event.target.value });
+        setFormData({ ...formData, state: event.target.value });
         break;
       case "price":
-        setFormData({ price: event.target.value });
+        setFormData({ ...formData, price: event.target.value });
         break;
       case "description":
-        setFormData({ description: event.target.value });
+        setFormData({ ...formData, description: event.target.value });
         break;
       case "photo":
-        setFormData({ photo: event.target.value });
+        setFormData({ ...formData, photo: event.target.value });
+        break;
     }
+  }
+
+  function saveHotels() {
+    console.log(formData);
+    setFormData({
+      name: "",
+      city: "",
+      state: "",
+      price: "",
+      description: "",
+      photo: "",
+    });
+    console.log(hotelsList);
   }
 
   return (
@@ -74,12 +90,19 @@ export default function Home() {
       </span>
       <Modal
         style={customStyles}
+        ariaHideApp={false}
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
       >
         <div className={styles.modalHeader}>
           <h2>Adicionar um novo hotel</h2>
-          <button>Salvar</button>
+          <button
+            onClick={() => {
+              saveHotels();
+            }}
+          >
+            Salvar
+          </button>
           <button
             onClick={() => {
               setModalIsOpen(false);
@@ -89,7 +112,7 @@ export default function Home() {
           </button>
         </div>
         <form className={styles.modalForm}>
-          <label for="name">
+          <label htmlFor="name">
             Nome do hotel
             <input
               type="text"
@@ -99,25 +122,54 @@ export default function Home() {
               }}
             />
           </label>
-          <label for="city">
+          <label htmlFor="city">
             Cidade
-            <input type="text" name="city" onChange={(e) => {}} />
+            <input
+              type="text"
+              name="city"
+              onChange={(e) => {
+                setFormInfo(e);
+              }}
+            />
           </label>
-          <label for="state">
+          <label htmlFor="state">
             Estado
-            <input type="text" name="state" />
+            <input
+              type="text"
+              name="state"
+              onChange={(e) => {
+                setFormInfo(e);
+              }}
+            />
           </label>
-          <label for="price">
+          <label htmlFor="price">
             Preço da diária
-            <input type="text" name="price" />
+            <input
+              type="text"
+              name="price"
+              onChange={(e) => {
+                setFormInfo(e);
+              }}
+            />
           </label>
-          <label for="description">
+          <label htmlFor="description">
             Descrição
-            <textarea name="description"></textarea>
+            <textarea
+              name="description"
+              onChange={(e) => {
+                setFormInfo(e);
+              }}
+            ></textarea>
           </label>
-          <label for="photo">
+          <label htmlFor="photo">
             Adicione imagens do hotel(URL)
-            <input type="text" />
+            <input
+              type="text"
+              name="photo"
+              onChange={(e) => {
+                setFormInfo(e);
+              }}
+            />
           </label>
         </form>
       </Modal>
