@@ -28,6 +28,14 @@ const customStyles = {
 
 export default function Home() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    city: "",
+    state: "",
+    price: "",
+    description: "",
+    photo: "",
+  });
 
   return (
     <div className={styles.homeContainer}>
