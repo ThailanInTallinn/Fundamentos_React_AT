@@ -37,6 +37,28 @@ export default function Home() {
     photo: "",
   });
 
+  function setFormInfo(event) {
+    switch (event.target.name) {
+      case "name":
+        setFormData({ name: event.target.value });
+        break;
+      case "city":
+        setFormData({ city: event.target.value });
+        break;
+      case "state":
+        setFormData({ state: event.target.value });
+        break;
+      case "price":
+        setFormData({ price: event.target.value });
+        break;
+      case "description":
+        setFormData({ description: event.target.value });
+        break;
+      case "photo":
+        setFormData({ photo: event.target.value });
+    }
+  }
+
   return (
     <div className={styles.homeContainer}>
       <Header />
@@ -69,11 +91,17 @@ export default function Home() {
         <form className={styles.modalForm}>
           <label for="name">
             Nome do hotel
-            <input type="text" name="name" />
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => {
+                setFormInfo(e);
+              }}
+            />
           </label>
           <label for="city">
             Cidade
-            <input type="text" name="city" />
+            <input type="text" name="city" onChange={(e) => {}} />
           </label>
           <label for="state">
             Estado
