@@ -37,6 +37,7 @@ export default function Home() {
     price: "",
     description: "",
     photo: "",
+    score: "",
   });
 
   const [hotelsList, setHotelsList] = useState([]);
@@ -61,6 +62,9 @@ export default function Home() {
       case "photo":
         setFormData({ ...formData, photo: event.target.value });
         break;
+      case "score":
+        setFormData({ ...formData, score: event.target.value });
+        break;
     }
   }
 
@@ -75,14 +79,22 @@ export default function Home() {
       formData.city == "" ||
       formData.state == "" ||
       formData.price == "" ||
-      formData.description == ""
+      formData.description == "" ||
+      formData.score == ""
     ) {
       alert("Preencha todos os campos.");
+    } else if (
+      Number(formData.price) < 0 ||
+      Number(formData.score) < 1 ||
+      Number(formData.score) > 5
+    ) {
+      alert("Preços devem ser positivos e avaliações devem estar entre 1 e 5");
     } else {
       const copy = [...hotelsList];
       copy.push(formData);
       setHotelsList(copy);
       localStorage.setItem("@hotels", JSON.stringify(copy));
+      clearUpForm();
     }
   }
 
@@ -96,8 +108,10 @@ export default function Home() {
       state: "",
       price: "",
       description: "",
+      score: "",
       photo: "",
     });
+    setModalIsOpen(false);
   }
 
   function getLocalStorage() {
@@ -138,8 +152,6 @@ export default function Home() {
           <button
             onClick={() => {
               saveHotels();
-              setModalIsOpen(false);
-              clearUpForm();
             }}
           >
             Salvar
@@ -206,6 +218,17 @@ export default function Home() {
                 setFormInfo(e);
               }}
             ></textarea>
+          </label>
+          <label htmlFor="score">
+            Classificação(de 1 a 5)
+            <input
+              type="text"
+              name="score"
+              value={formData.score}
+              onChange={(e) => {
+                setFormInfo(e);
+              }}
+            />
           </label>
           <label htmlFor="photo">
             Adicione imagens do hotel(URL)
