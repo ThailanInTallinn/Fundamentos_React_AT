@@ -5,7 +5,8 @@ import Options from "../../components/options/options";
 import styles from "./home.module.css";
 import { IoMdAdd } from "react-icons/io";
 import Modal from "react-modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { nanoid } from "nanoid";
 
 const customStyles = {
   content: {
@@ -29,6 +30,7 @@ const customStyles = {
 export default function Home() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [formData, setFormData] = useState({
+    id: "",
     name: "",
     city: "",
     state: "",
@@ -62,9 +64,33 @@ export default function Home() {
     }
   }
 
+  function setId() {
+    const id = nanoid();
+    setFormData({ ...formData, id: id });
+  }
+
   function saveHotels() {
-    console.log(formData);
+    if (
+      formData.name == "" ||
+      formData.city == "" ||
+      formData.state == "" ||
+      formData.price == "" ||
+      formData.description == ""
+    ) {
+      alert("Preencha todos os campos.");
+    } else {
+      const copy = [...hotelsList];
+      copy.push(formData);
+      setHotelsList(copy);
+      localStorage.setItem("@hotels", JSON.stringify(copy));
+    }
+  }
+
+  function clearUpForm() {
     setFormData({
+      ...formData,
+
+      id: "",
       name: "",
       city: "",
       state: "",
@@ -72,8 +98,19 @@ export default function Home() {
       description: "",
       photo: "",
     });
-    console.log(hotelsList);
   }
+
+  function getLocalStorage() {
+    const savedListDB = localStorage.getItem("@hotels");
+    if (savedListDB) {
+      const savedListDBJSON = JSON.parse(savedListDB);
+      setHotelsList(savedListDBJSON);
+    }
+  }
+
+  useEffect(() => {
+    getLocalStorage();
+  }, []);
 
   return (
     <div className={styles.homeContainer}>
@@ -83,6 +120,8 @@ export default function Home() {
       <span
         onClick={() => {
           setModalIsOpen(!modalIsOpen);
+          setId();
+          console.log(hotelsList);
         }}
         className={styles.addButton}
       >
@@ -99,6 +138,8 @@ export default function Home() {
           <button
             onClick={() => {
               saveHotels();
+              setModalIsOpen(false);
+              clearUpForm();
             }}
           >
             Salvar
@@ -117,6 +158,7 @@ export default function Home() {
             <input
               type="text"
               name="name"
+              value={formData.name}
               onChange={(e) => {
                 setFormInfo(e);
               }}
@@ -127,6 +169,7 @@ export default function Home() {
             <input
               type="text"
               name="city"
+              value={formData.city}
               onChange={(e) => {
                 setFormInfo(e);
               }}
@@ -137,6 +180,7 @@ export default function Home() {
             <input
               type="text"
               name="state"
+              value={formData.state}
               onChange={(e) => {
                 setFormInfo(e);
               }}
@@ -147,6 +191,7 @@ export default function Home() {
             <input
               type="text"
               name="price"
+              value={formData.price}
               onChange={(e) => {
                 setFormInfo(e);
               }}
@@ -156,6 +201,7 @@ export default function Home() {
             Descrição
             <textarea
               name="description"
+              value={formData.description}
               onChange={(e) => {
                 setFormInfo(e);
               }}
@@ -166,6 +212,7 @@ export default function Home() {
             <input
               type="text"
               name="photo"
+              value={formData.photo}
               onChange={(e) => {
                 setFormInfo(e);
               }}
