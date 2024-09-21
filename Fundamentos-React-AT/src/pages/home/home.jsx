@@ -136,6 +136,14 @@ export default function Home() {
     }
   }
 
+  function deleteItem(itemId) {
+    const newHotelsList = hotelsList.filter((item) => {
+      return item.id != itemId;
+    });
+
+    setHotelsList(newHotelsList);
+  }
+
   useEffect(() => {
     getLocalStorage();
   }, []);
@@ -144,7 +152,7 @@ export default function Home() {
     <div className={styles.homeContainer}>
       <Header searchItems={searchItems} />
       <Options />
-      <Body localStorageItems={hotelsList} />
+      <Body localStorageItems={hotelsList} setHotelsList={setHotelsList} />
       <span
         onClick={() => {
           setModalIsOpen(!modalIsOpen);
