@@ -1,6 +1,7 @@
 .optionsContainer {
   grid-area: Options;
   width: 100%;
+  max-width: 400px;
   height: 90%;
   border: 1px solid lightgray;
   border-radius: 8px;
