@@ -12,7 +12,7 @@ export default function Card(props) {
           }
         />
         <p>{props.name}</p>
-        <p>{props.price}</p>
+        <p>R$ {props.price}</p>
         <p>
           {props.city}, {props.state}
         </p>
