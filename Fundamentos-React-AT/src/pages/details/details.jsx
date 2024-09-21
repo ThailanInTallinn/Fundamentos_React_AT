@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import Header from "../../components/header/header";
 import styles from "./details.module.css";
 import { useParams } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 
-export default function Details() {
+export default function Details({}) {
   const [finalObject, setFinalObject] = useState({});
   const parametros = useParams();
   function getItem() {
@@ -50,10 +48,6 @@ export default function Details() {
             {finalObject.city}, {finalObject.state}
           </p>
           <p className={styles.description}>{finalObject.description}</p>
-          <div className={styles.buttonsContainer}>
-            <FaEdit />
-            <MdDelete className={styles.delete} />
-          </div>
         </div>
       </div>
     </div>

@@ -64,19 +64,3 @@
 p.description {
   font-size: 1.5rem;
 }
-
-.buttonsContainer {
-  display: flex;
-  width: 60%;
-  font-size: 3rem;
-  justify-content: space-evenly;
-  height: 15%;
-}
-
-.buttonsContainer > * {
-  cursor: pointer;
-}
-
-.delete {
-  color: darkred;
-}
