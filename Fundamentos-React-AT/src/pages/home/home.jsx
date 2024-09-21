@@ -122,15 +122,31 @@ export default function Home() {
     }
   }
 
+  function searchItems(word) {
+    let searchResult;
+    if (word.length > 0) {
+      const wordLower = word.toLowerCase();
+      searchResult = hotelsList.filter((item) => {
+        return item.name.toLowerCase().includes(wordLower);
+      });
+
+      setHotelsList(searchResult);
+    } else {
+      getLocalStorage();
+    }
+
+    console.log(word);
+  }
+
   useEffect(() => {
     getLocalStorage();
   }, []);
 
   return (
     <div className={styles.homeContainer}>
-      <Header />
+      <Header searchItems={searchItems} />
       <Options />
-      <Body />
+      <Body localStorageItems={hotelsList} />
       <span
         onClick={() => {
           setModalIsOpen(!modalIsOpen);
