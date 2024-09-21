@@ -4,4 +4,79 @@
   height: 100vh;
   width: 100vw;
   color: black;
+  align-items: center;
+  background-color: white;
+}
+
+.detailsBody {
+  width: 90%;
+  min-width: 1200px;
+  height: 60vh;
+  min-height: 550px;
+  background-color: lightgray;
+  display: flex;
+  margin-top: 40px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.detailsBody img {
+  width: 50%;
+  height: auto;
+}
+
+.infoContainer {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.infoContainer p {
+  font-size: 2rem;
+}
+
+.priceNameContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  vertical-align: baseline;
+  height: 30%;
+}
+
+.priceNameContainer h2 {
+  font-size: 5rem;
+}
+
+.priceNameContainer p::before {
+  content: "Diária:";
+  font-size: 1.5rem;
+  margin-right: 14px;
+}
+.priceNameContainer p {
+  font-size: 3rem;
+}
+
+p.description {
+  font-size: 1.5rem;
+}
+
+.buttonsContainer {
+  display: flex;
+  width: 60%;
+  font-size: 3rem;
+  justify-content: space-evenly;
+  height: 15%;
+}
+
+.buttonsContainer > * {
+  cursor: pointer;
+}
+
+.delete {
+  color: darkred;
 }

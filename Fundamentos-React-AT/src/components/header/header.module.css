@@ -6,6 +6,8 @@
   padding: 0px 15px;
   justify-content: space-between;
   height: 120px;
+  min-height: 120px;
+  width: 100%;
 }
 
 .headerContainer h1 {
@@ -49,4 +51,5 @@
 .optionsContainer span {
   font-size: 1.6rem;
   cursor: pointer;
+  color: white;
 }
