@@ -134,8 +134,6 @@ export default function Home() {
     } else {
       getLocalStorage();
     }
-
-    console.log(word);
   }
 
   useEffect(() => {
