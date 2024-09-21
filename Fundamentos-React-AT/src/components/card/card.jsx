@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./card.module.css";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 export default function Card(props) {
   return (
@@ -17,6 +19,10 @@ export default function Card(props) {
           {props.city}, {props.state}
         </p>
         <p>Classificação: {props.score}</p>
+        <div className={styles.buttonsContainer}>
+          <FaEdit />
+          <MdDelete className={styles.delete} />
+        </div>
       </div>
     </Link>
   );
