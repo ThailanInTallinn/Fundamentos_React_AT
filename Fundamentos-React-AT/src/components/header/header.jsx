@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./header.module.css";
 import { CiLight, CiDark } from "react-icons/ci";
 
-export default function Header({ searchItems }) {
+export default function Header({ searchItems, setTheme, themeOption }) {
   return (
     <header className={styles.headerContainer}>
       <Link to="/">
@@ -18,7 +18,11 @@ export default function Header({ searchItems }) {
         />
 
         <span>
-          <CiDark />
+          <CiDark
+            onClick={() => {
+              setTheme();
+            }}
+          />
         </span>
       </div>
     </header>

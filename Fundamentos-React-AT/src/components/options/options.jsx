@@ -1,14 +1,22 @@
 import styles from "./options.module.css";
 
-export default function Options() {
+export default function Options({
+  setShowFavorites,
+  showFavorites,
+  themeOption,
+}) {
   return (
     <div className={styles.optionsContainer}>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia architecto
-        quam rerum ratione nostrum fugit, blanditiis itaque nobis magnam quasi
-        beatae ullam cupiditate asperiores ipsum doloremque, voluptas alias
-        molestiae facilis?
-      </p>
+      <div className={styles.favoritesContainer}>
+        <h2 style={{ color: themeOption ? "" : "white" }}>Hotéis favoritos</h2>
+        <button
+          onClick={() => {
+            setShowFavorites(!showFavorites);
+          }}
+        >
+          {showFavorites ? "Mostrar todos" : "Mostrar favoritos"}
+        </button>
+      </div>
     </div>
   );
 }

@@ -44,6 +44,7 @@ export default function Home() {
   const [beingEdited, setBeingEdited] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [themeOption, setThemeOption] = useState(false);
 
   function setFormInfo(event) {
     switch (event.target.name) {
@@ -245,16 +246,28 @@ export default function Home() {
     alert("Hotel removido dos favoritos");
   }
 
+  function setTheme() {
+    setThemeOption(!themeOption);
+  }
+
   useEffect(() => {
     getLocalStorage();
   }, []);
 
   return (
-    <div className={styles.homeContainer}>
-      <Header searchItems={searchItems} />
+    <div
+      className={styles.homeContainer}
+      style={{ backgroundColor: themeOption ? "" : "#102a43" }}
+    >
+      <Header
+        searchItems={searchItems}
+        setTheme={setTheme}
+        themeOption={themeOption}
+      />
       <Options
         setShowFavorites={setShowFavorites}
         showFavorites={showFavorites}
+        themeOption={themeOption}
       />
       <Body
         hotelsList={hotelsList}
@@ -262,6 +275,9 @@ export default function Home() {
         editItem={editItem}
         setFavorite={setFavorite}
         removeFavorite={removeFavorite}
+        themeOption={themeOption}
+        showFavorites={showFavorites}
+        favorites={favorites}
       />
       <span
         onClick={() => {
@@ -295,8 +311,11 @@ export default function Home() {
             X
           </button>
         </div>
-        <form className={styles.modalForm}>
-          <label htmlFor="name">
+        <form
+          className={styles.modalForm}
+          style={{ backgroundColor: themeOption ? "" : "#102a43" }}
+        >
+          <label htmlFor="name" style={{ color: themeOption ? "" : "white" }}>
             Nome do hotel
             <input
               type="text"
@@ -307,7 +326,7 @@ export default function Home() {
               }}
             />
           </label>
-          <label htmlFor="city">
+          <label htmlFor="city" style={{ color: themeOption ? "" : "white" }}>
             Cidade
             <input
               type="text"
@@ -318,7 +337,7 @@ export default function Home() {
               }}
             />
           </label>
-          <label htmlFor="state">
+          <label htmlFor="state" style={{ color: themeOption ? "" : "white" }}>
             Estado
             <input
               type="text"
@@ -329,7 +348,7 @@ export default function Home() {
               }}
             />
           </label>
-          <label htmlFor="price">
+          <label htmlFor="price" style={{ color: themeOption ? "" : "white" }}>
             Preço da diária
             <input
               type="text"
@@ -340,7 +359,10 @@ export default function Home() {
               }}
             />
           </label>
-          <label htmlFor="description">
+          <label
+            htmlFor="description"
+            style={{ color: themeOption ? "" : "white" }}
+          >
             Descrição
             <textarea
               name="description"
@@ -350,7 +372,7 @@ export default function Home() {
               }}
             ></textarea>
           </label>
-          <label htmlFor="score">
+          <label htmlFor="score" style={{ color: themeOption ? "" : "white" }}>
             Classificação(de 1 a 5)
             <input
               type="text"
@@ -361,7 +383,7 @@ export default function Home() {
               }}
             />
           </label>
-          <label htmlFor="photo">
+          <label htmlFor="photo" style={{ color: themeOption ? "" : "white" }}>
             Adicione imagens do hotel(URL)
             <input
               type="text"

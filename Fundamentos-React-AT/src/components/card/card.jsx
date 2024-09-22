@@ -16,12 +16,16 @@ export default function Card({
   editItem,
   setFavorite,
   removeFavorite,
+  themeOption,
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
   return (
     <div className={styles.outerContainer}>
       <Link to={`/details/${id}`} className={styles.linkContainer}>
-        <div className={styles.cardContainer}>
+        <div
+          className={styles.cardContainer}
+          style={{ backgroundColor: themeOption ? "" : "navy" }}
+        >
           <img
             src={
               img ||

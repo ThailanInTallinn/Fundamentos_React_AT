@@ -8,4 +8,19 @@
   margin-top: 2vh;
   margin-left: 1vw;
   color: black;
+  padding: 10px;
+}
+
+.favoritesContainer {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.favoritesContainer button {
+  width: 60%;
+  background-color: green;
 }

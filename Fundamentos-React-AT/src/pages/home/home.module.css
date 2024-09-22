@@ -37,6 +37,10 @@
   background-color: black;
 }
 
+.ReactModal__Content--after-open {
+  background-color: black;
+}
+
 .modalForm {
   display: flex;
   flex-direction: column;
