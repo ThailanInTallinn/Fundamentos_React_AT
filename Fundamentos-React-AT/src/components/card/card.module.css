@@ -33,6 +33,7 @@
 .cardContainer img {
   max-height: 240px;
   width: auto;
+  max-width: 250px;
   border-radius: 4px;
   margin-bottom: 10px;
 }
