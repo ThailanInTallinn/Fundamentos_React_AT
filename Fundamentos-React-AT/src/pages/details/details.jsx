@@ -22,18 +22,6 @@ export default function Details({}) {
     getItem();
   }, []);
 
-  const starsNumber = Number(finalObject.score);
-  const starsList = [];
-
-  function showStars() {
-    for (let i = 1; i <= starsNumber; i++) {
-      starsList.push(1);
-      console.log(finalObject.score);
-    }
-
-    return starsList;
-  }
-
   return (
     <div className={styles.detailsContainer}>
       <Header className={styles.headerTwo} />
