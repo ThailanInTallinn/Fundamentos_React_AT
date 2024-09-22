@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./card.module.css";
 import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { useState } from "react";
 
 export default function Card({
   id,
@@ -13,7 +14,10 @@ export default function Card({
   score,
   deleteItem,
   editItem,
+  setFavorite,
+  removeFavorite,
 }) {
+  const [isFavorite, setIsFavorite] = useState(false);
   return (
     <div className={styles.outerContainer}>
       <Link to={`/details/${id}`} className={styles.linkContainer}>
@@ -44,6 +48,21 @@ export default function Card({
             deleteItem(id);
           }}
         />
+        {isFavorite ? (
+          <MdFavorite
+            onClick={() => {
+              removeFavorite(id);
+              setIsFavorite(false);
+            }}
+          />
+        ) : (
+          <MdFavoriteBorder
+            onClick={() => {
+              setFavorite(id);
+              setIsFavorite(true);
+            }}
+          />
+        )}
       </div>
     </div>
   );

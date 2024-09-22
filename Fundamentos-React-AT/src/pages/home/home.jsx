@@ -42,6 +42,8 @@ export default function Home() {
 
   const [hotelsList, setHotelsList] = useState([]);
   const [beingEdited, setBeingEdited] = useState(false);
+  const [showFavorites, setShowFavorites] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   function setFormInfo(event) {
     switch (event.target.name) {
@@ -91,6 +93,10 @@ export default function Home() {
     ) {
       alert("Preços devem ser positivos e avaliações devem estar entre 1 e 5");
     } else {
+      if (hotelsList.length == 0) {
+        const defaultFavorites = JSON.stringify(favorites);
+        localStorage.setItem("@FavoriteHotels", defaultFavorites);
+      }
       const copy = [...hotelsList];
       copy.push(formData);
       setHotelsList(copy);
@@ -146,7 +152,21 @@ export default function Home() {
     setHotelsList(newHotelsList);
     localStorage.setItem("@hotels", JSON.stringify(newHotelsList));
 
-    console.log(newHotelsList);
+    const checkFavorites = favorites.filter((item) => {
+      return item.id == itemId;
+    });
+
+    if (checkFavorites.length > 0) {
+      const filteredFavorites = favorites.filter((item) => {
+        return item.id != itemId;
+      });
+      localStorage.setItem(
+        "@FavoriteHotels",
+        JSON.stringify(filteredFavorites)
+      );
+      setFavorites(filteredFavorites);
+    }
+    alert("Hotel excluído com sucesso.");
   }
 
   function editItem(itemId) {
@@ -187,7 +207,42 @@ export default function Home() {
       localStorage.setItem("@hotels", JSON.stringify(hotelsList));
       clearUpForm();
       setBeingEdited(false);
+      alert("Hotel editado com sucesso.");
     }
+  }
+
+  function setFavorite(itemId) {
+    const savedFavoritesDB = localStorage.getItem("@FavoriteHotels");
+    if (savedFavoritesDB == null) {
+      const pickedHotel = hotelsList.filter((item) => {
+        return item.id == itemId;
+      });
+      const pickedHotelObject = pickedHotel.pop();
+      const copy = [...favorites];
+      copy.push(pickedHotelObject);
+      localStorage.setItem("@FavoriteHotels", JSON.stringify(copy));
+      setFavorites(copy);
+      alert("Hotel adicionado aos favoritos.");
+    } else {
+      const pickedHotel = hotelsList.filter((item) => {
+        return item.id == itemId;
+      });
+      const pickedHotelObject = pickedHotel.pop();
+      const copy = [...favorites];
+      copy.push(pickedHotelObject);
+      localStorage.setItem("@FavoriteHotels", JSON.stringify(copy));
+      setFavorites(copy);
+      alert("Hotel adicionado aos favoritos.");
+    }
+  }
+
+  function removeFavorite(itemId) {
+    const allFavorites = favorites.filter((item) => {
+      return item.id != itemId;
+    });
+    localStorage.setItem("@FavoriteHotels", JSON.stringify(allFavorites));
+    setFavorites(allFavorites);
+    alert("Hotel removido dos favoritos");
   }
 
   useEffect(() => {
@@ -197,17 +252,21 @@ export default function Home() {
   return (
     <div className={styles.homeContainer}>
       <Header searchItems={searchItems} />
-      <Options />
+      <Options
+        setShowFavorites={setShowFavorites}
+        showFavorites={showFavorites}
+      />
       <Body
         hotelsList={hotelsList}
         deleteItem={deleteItem}
         editItem={editItem}
+        setFavorite={setFavorite}
+        removeFavorite={removeFavorite}
       />
       <span
         onClick={() => {
           setModalIsOpen(!modalIsOpen);
           setId();
-          console.log(hotelsList);
         }}
         className={styles.addButton}
       >

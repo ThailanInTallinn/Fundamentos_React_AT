@@ -18,6 +18,8 @@ export default function Body(props) {
             score={item.score}
             deleteItem={props.deleteItem}
             editItem={props.editItem}
+            setFavorite={props.setFavorite}
+            removeFavorite={props.removeFavorite}
           />
         );
       })}
