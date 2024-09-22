@@ -1,10 +1,10 @@
 import styles from "./body.module.css";
 import Card from "../card/card";
 
-export default function Body({ localStorageItems }) {
+export default function Body(props) {
   return (
     <div className={styles.bodyContainer}>
-      {localStorageItems.map((item) => {
+      {props.hotelsList.map((item) => {
         return (
           <Card
             key={item.id}
@@ -16,6 +16,8 @@ export default function Body({ localStorageItems }) {
             description={item.description}
             img={item.photo}
             score={item.score}
+            deleteItem={props.deleteItem}
+            editItem={props.editItem}
           />
         );
       })}

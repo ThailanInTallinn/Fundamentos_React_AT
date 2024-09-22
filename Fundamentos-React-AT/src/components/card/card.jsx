@@ -11,7 +11,8 @@ export default function Card({
   city,
   state,
   score,
-  setHotelsList,
+  deleteItem,
+  editItem,
 }) {
   return (
     <div className={styles.outerContainer}>
@@ -32,8 +33,17 @@ export default function Card({
         </div>
       </Link>
       <div className={styles.buttonsContainer}>
-        <FaEdit />
-        <MdDelete className={styles.delete} onClick={(id) => {}} />
+        <FaEdit
+          onClick={() => {
+            editItem(id);
+          }}
+        />
+        <MdDelete
+          className={styles.delete}
+          onClick={() => {
+            deleteItem(id);
+          }}
+        />
       </div>
     </div>
   );

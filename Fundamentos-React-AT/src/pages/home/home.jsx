@@ -41,6 +41,7 @@ export default function Home() {
   });
 
   const [hotelsList, setHotelsList] = useState([]);
+  const [beingEdited, setBeingEdited] = useState(false);
 
   function setFormInfo(event) {
     switch (event.target.name) {
@@ -137,11 +138,56 @@ export default function Home() {
   }
 
   function deleteItem(itemId) {
-    const newHotelsList = hotelsList.filter((item) => {
+    const copy = [...hotelsList];
+    const newHotelsList = copy.filter((item) => {
       return item.id != itemId;
     });
 
     setHotelsList(newHotelsList);
+    localStorage.setItem("@hotels", JSON.stringify(newHotelsList));
+
+    console.log(newHotelsList);
+  }
+
+  function editItem(itemId) {
+    setBeingEdited(true);
+    const copy = [...hotelsList];
+    const newHotelsList = copy.filter((item) => {
+      return item.id == itemId;
+    });
+    const newObjectItem = newHotelsList.pop();
+    setFormData({ ...formData, ...newObjectItem });
+    setModalIsOpen(true);
+  }
+
+  function saveEditedItem() {
+    if (
+      formData.name == "" ||
+      formData.city == "" ||
+      formData.state == "" ||
+      formData.price == "" ||
+      formData.description == "" ||
+      formData.score == ""
+    ) {
+      alert("Preencha todos os campos.");
+    } else if (
+      Number(formData.price) < 0 ||
+      Number(formData.score) < 1 ||
+      Number(formData.score) > 5
+    ) {
+      alert("Preços devem ser positivos e avaliações devem estar entre 1 e 5");
+    } else {
+      const copy = [...hotelsList];
+      const newHotelsList = copy.filter((item) => {
+        return item.id != formData.id;
+      });
+      newHotelsList.push(formData);
+
+      setHotelsList(newHotelsList);
+      localStorage.setItem("@hotels", JSON.stringify(hotelsList));
+      clearUpForm();
+      setBeingEdited(false);
+    }
   }
 
   useEffect(() => {
@@ -152,7 +198,11 @@ export default function Home() {
     <div className={styles.homeContainer}>
       <Header searchItems={searchItems} />
       <Options />
-      <Body localStorageItems={hotelsList} setHotelsList={setHotelsList} />
+      <Body
+        hotelsList={hotelsList}
+        deleteItem={deleteItem}
+        editItem={editItem}
+      />
       <span
         onClick={() => {
           setModalIsOpen(!modalIsOpen);
@@ -173,7 +223,7 @@ export default function Home() {
           <h2>Adicionar um novo hotel</h2>
           <button
             onClick={() => {
-              saveHotels();
+              beingEdited == false ? saveHotels() : saveEditedItem();
             }}
           >
             Salvar
