@@ -6,6 +6,7 @@ import Details from "./pages/details/details";
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/details/:id", element: <Details /> },
+  { basename: import.meta.env.DEV ? "/" : "/Fundamentos_React_AT/" },
 ]);
 
 export default function Routes() {
