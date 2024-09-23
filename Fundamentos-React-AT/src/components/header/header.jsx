@@ -13,6 +13,7 @@ export default function Header({ searchItems, setTheme, themeOption }) {
       </Link>
       <span
         className={styles.menuToggle}
+        style={{ color: themeOption ? "white" : "" }}
         onClick={() => {
           setMenuToggle(!menuToggle);
         }}
