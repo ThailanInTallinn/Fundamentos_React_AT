@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://ThailanInTallinn.github.io/Fundamentos_React_AT/",
+  "homepage": "https://thailantntallinn.github.io/Fundamentos_React_AT/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
