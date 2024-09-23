@@ -53,3 +53,42 @@
   cursor: pointer;
   color: white;
 }
+
+.menuToggle {
+  display: none;
+}
+
+@media screen and (max-width: 430px) {
+  .headerContainer {
+    width: 100vw;
+    padding-right: 10%;
+    position: relative;
+  }
+
+  .optionsContainer {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    height: 150px;
+    padding: 0px;
+    background-color: darkblue;
+    justify-content: space-evenly;
+  }
+
+  .optionsContainer input {
+    height: 50px;
+  }
+
+  .headerContainer h1 {
+    font-size: 2rem;
+  }
+
+  .menuToggle {
+    display: block;
+    font-size: 2rem;
+    position: absolute;
+    left: 80%;
+  }
+}

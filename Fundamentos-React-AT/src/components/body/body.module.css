@@ -14,3 +14,13 @@
   justify-items: stretch;
   row-gap: clamp(20px, 40px, 50px);
 }
+
+@media screen and (max-width: 430px) {
+  .bodyContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+    margin-bottom: 2vh;
+  }
+}
